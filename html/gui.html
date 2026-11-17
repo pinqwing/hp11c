@@ -1,0 +1,344 @@
+﻿<html>
+  <head>
+    <style>
+      body {
+        font-size:          25px; 
+        font-family:        "dejaVu sans", sans-serif;
+        padding:            0px; 
+        margin:             0px;
+		overflow: 			hidden; /* Hide scrollbars */
+        }
+      
+      .button {  
+        position: absolute;
+        width:              85px;
+        height:             68px;
+        background-image:   url('key.png');
+        background-size:    100% 100%;
+        
+        padding-left:       0px;
+        padding-top:        7px;
+        text-align:         center;
+        
+        user-select:        none;
+        cursor:             pointer;
+        }   
+        
+      .plainText {
+        color:              white;
+        font-weight:        bold;
+        }
+        
+      .blueText {
+        color:              #2D83E3;
+        font-size:          20px;
+        font-width:         120%;
+        position:           relative;
+        top:                10px;
+        }
+       
+      .displayInfo {
+        position:           absolute;
+        top:                90px;
+        visibility:         hidden;
+        }
+        
+    </style>
+    
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+  </head>  
+    
+  <body>
+    <div id="device"
+        style ="
+            width:              1200px;
+            height:             800px;
+            transform:          scale(0.55);
+            transform-origin:   top left; 
+            background-image:   url('background.png');
+            background-size:    100% 100%;
+            ">
+            
+        <div id="display"
+            style="
+                position: absolute;
+                left: 225px; top: 65px; width: 550px; height: 125px;
+                padding-top: 10px;">
+
+                <span id="mantissa" style="
+                    font-family: 'ticking timebomb BB';
+                    font-style: italic;
+                    font-size: 80px;">
+                    gui.html
+                </span>
+
+            <div id="lblUser" class="displayInfo" style="left:  20px">USER</div>
+            <div id="lblFmod" class="displayInfo" style="left: 120px">f</div>
+            <div id="lblGmod" class="displayInfo" style="left: 160px">g</div>
+            <div id="lblBgin" class="displayInfo" style="left: 230px">BEGIN</div>
+            <div id="lblGrad" class="displayInfo" style="left: 330px">GRAD</div>
+            <div id="lblCmpd" class="displayInfo" style="left: 430px">C</div>
+            <div id="lblPrgm" class="displayInfo" style="left: 470px">PRGM</div>
+        </div>
+        
+        <div id="$debugger" class="button"
+        	style="
+                left: 1042px; top: 65px; width: 90px; height: 90px;
+                opacity: 			0.0;"/>
+        </div>
+            
+    <!-- ---------------------------------------------------------------------- !-->
+        <div id="sqrt" class="button" style="top: 282px; left: 79px; ">
+            <span class="plainText">√x</span><br/>
+            <span class="blueText">A</span>
+            </div>
+
+        <div id="exp" class="button" style="top: 282px; left: 186px; ">
+            <span class="plainText">e<sup>-1</sup></span><br/>
+            <span class="blueText">B</span>
+            </div>
+
+        <div id="10x" class="button" style="top: 282px; left: 293px; ">
+            <span class="plainText">10<sup>x</sup></span><br/>
+            <span class="blueText">C</span>
+            </div>
+
+        <div id="pwr" class="button" style="top: 282px; left: 400px; ">
+            <span class="plainText">y<sup>x</sup></span><br/>
+            <span class="blueText">D</span>
+            </div>
+
+        <div id="inv" class="button" style="top: 282px; left: 507px; ">
+            <span class="plainText">1/x</span><br/>
+            <span class="blueText">E</span>
+            </div>
+
+        <div id="chs" class="button" style="top: 282px; left: 614px; ">
+            <span class="plainText">CHS</span><br/>
+            <span class="blueText">π</span>
+            </div>
+
+        <div id="7" class="button" style="top: 282px; left: 721px; ">
+            <span class="plainText">7</span><br/>
+            <span class="blueText">FIX</span>
+            </div>
+
+        <div id="8" class="button" style="top: 282px; left: 828px; ">
+            <span class="plainText">8</span><br/>
+            <span class="blueText">SCI</span>
+            </div>
+
+        <div id="9" class="button" style="top: 282px; left: 935px; ">
+            <span class="plainText">9</span><br/>
+            <span class="blueText">ENG</span>
+            </div>
+
+        <div id="div" class="button" style="top: 282px; left: 1042px; ">
+            <span class="plainText">÷</span><br/>
+            <span class="blueText">x≤y</span>
+            </div>
+
+        <div id="sst" class="button" style="top: 410px; left: 79px; ">
+            <span class="plainText">SST</span><br/>
+            <span class="blueText">LBL</span>
+            </div>
+
+        <div id="gto" class="button" style="top: 410px; left: 186px; ">
+            <span class="plainText">GTO</span><br/>
+            <span class="blueText">HYP</span>
+            </div>
+
+        <div id="sin" class="button" style="top: 410px; left: 293px; ">
+            <span class="plainText">SIN</span><br/>
+            <span class="blueText">x↔(i)</span>
+            </div>
+
+        <div id="cos" class="button" style="top: 410px; left: 400px; ">
+            <span class="plainText">COS</span><br/>
+            <span class="blueText">(i)</span>
+            </div>
+
+        <div id="tan" class="button" style="top: 410px; left: 507px; ">
+            <span class="plainText">TAN</span><br/>
+            <span class="blueText">I</span>
+            </div>
+
+        <div id="eex" class="button" style="top: 410px; left: 614px; ">
+            <span class="plainText">EEX</span><br/>
+            <span class="blueText">→R</span>
+            </div>
+
+        <div id="4" class="button" style="top: 410px; left: 721px; ">
+            <span class="plainText">4</span><br/>
+            <span class="blueText">x↔I</span>
+            </div>
+
+        <div id="5" class="button" style="top: 410px; left: 828px; ">
+            <span class="plainText">5</span><br/>
+            <span class="blueText">DSE</span>
+            </div>
+
+        <div id="6" class="button" style="top: 410px; left: 935px; ">
+            <span class="plainText">6</span><br/>
+            <span class="blueText">ISG</span>
+            </div>
+
+        <div id="mul" class="button" style="top: 410px; left: 1042px; ">
+            <span class="plainText">×</span><br/>
+            <span class="blueText">x>y</span>
+            </div>
+
+        <div id="rs" class="button" style="top: 538px; left: 79px; ">
+            <span class="plainText">R/S</span><br/>
+            <span class="blueText">PSE</span>
+            </div>
+
+        <div id="gsb" class="button" style="top: 538px; left: 186px; ">
+            <span class="plainText">GSB</span><br/>
+            <span class="blueText">Σ</span>
+            </div>
+
+        <div id="r" class="button" style="top: 538px; left: 293px; ">
+            <span class="plainText">R↓</span><br/>
+            <span class="blueText">PRGM</span>
+            </div>
+
+        <div id="swap" class="button" style="top: 538px; left: 400px; ">
+            <span class="plainText">x↔y</span><br/>
+            <span class="blueText">REG</span>
+            </div>
+
+        <div id="bsp" class="button" style="top: 538px; left: 507px; ">
+            <span class="plainText">←</span><br/>
+            <span class="blueText">PREFIX</span>
+            </div>
+
+        <div id="enter" class="button" style="top: 538px; left: 614px; height: 196px; padding-top: 13px; background-image: url('enter.png')">
+            <span class="plainText"></span><br/>
+            <span class="blueText"></span>
+            </div>
+
+        <div id="1" class="button" style="top: 538px; left: 721px; ">
+            <span class="plainText">1</span><br/>
+            <span class="blueText">Py,x</span>
+            </div>
+
+        <div id="2" class="button" style="top: 538px; left: 828px; ">
+            <span class="plainText">2</span><br/>
+            <span class="blueText">→H.MS</span>
+            </div>
+
+        <div id="3" class="button" style="top: 538px; left: 935px; ">
+            <span class="plainText">3</span><br/>
+            <span class="blueText">→RAD</span>
+            </div>
+
+        <div id="min" class="button" style="top: 538px; left: 1042px; ">
+            <span class="plainText">-</span><br/>
+            <span class="blueText">x≠y</span>
+            </div>
+
+        <div id="on" class="button" style="top: 666px; left: 79px; ">
+            <span class="plainText">ON</span><br/>
+            <span class="blueText"></span>
+            </div>
+
+        <div id="f" class="button" style="top: 666px; left: 186px; background-image: url('keyf.png')">
+            <span class="plainText"></span><br/>
+            <span class="blueText"></span>
+            </div>
+
+        <div id="g" class="button" style="top: 666px; left: 293px; background-image: url('keyg.png')">
+            <span class="plainText"></span><br/>
+            <span class="blueText"></span>
+            </div>
+
+        <div id="sto" class="button" style="top: 666px; left: 400px; ">
+            <span class="plainText">STO</span><br/>
+            <span class="blueText">FRAC</span>
+            </div>
+
+        <div id="rcl" class="button" style="top: 666px; left: 507px; ">
+            <span class="plainText">RCL</span><br/>
+            <span class="blueText">USER</span>
+            </div>
+
+        <div id="0" class="button" style="top: 666px; left: 721px; ">
+            <span class="plainText">0</span><br/>
+            <span class="blueText">x!</span>
+            </div>
+
+        <div id="dot" class="button" style="top: 666px; left: 828px; ">
+            <span class="plainText">.</span><br/>
+            <span class="blueText">Ŷ+r</span>
+            </div>
+
+        <div id="sigma" class="button" style="top: 666px; left: 935px; ">
+            <span class="plainText">Σ+</span><br/>
+            <span class="blueText">L.R.</span>
+            </div>
+
+        <div id="plus" class="button" style="top: 666px; left: 1042px; ">
+            <span class="plainText">+</span><br/>
+            <span class="blueText">x=y</span>
+            </div>
+    <!-- ---------------------------------------------------------------------- !-->
+    <script>
+         
+        var backend; // Python-koppeling
+
+        // Initialiseer het Qt WebChannel
+        new QWebChannel(qt.webChannelTransport, 
+            function (channel) 
+                {
+                backend = channel.objects.backend;
+        
+                backend.textChanged.connect(function(labelId, text) 
+                    {
+                    document.getElementById(labelId).innerText = text;                
+                    });
+
+                    
+                backend.showLabel.connect(function(labelId, visible) 
+                    {
+                    document.getElementById(labelId).style.visibility = visible;                
+                    });
+
+                });
+
+        
+        document.addEventListener('click', 
+            function(event) 
+                {
+                var button = event.target.closest('.button');
+                if (backend && button) 
+                    {
+                    var tag = button.getAttribute('id');
+                    backend.buttonClicked(tag);
+                    }
+                }
+            );
+            
+        document.addEventListener('keypress', 
+            function(event) 
+                {
+                if (backend) 
+                    {
+                    console.log(event);
+					const payload = {
+                		key: event.key,
+                		code: event.code,
+                		shiftKey: event.shiftKey,
+                		ctrlKey: event.ctrlKey,
+                		altKey: event.altKey,
+            			};
+            			                    
+                    backend.keyPressed(JSON.stringify(payload));
+                    }
+                }
+            );
+            
+    </script>
+    
+  </body>
+</html>
